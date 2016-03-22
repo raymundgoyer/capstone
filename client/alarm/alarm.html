@@ -1,0 +1,30 @@
+<template name="alarm">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<div class="container">
+    
+ <div class="row" style= "margin-top:30px;">
+                <div class="col s3"><a  href="{{pathFor 'project'}}"> <img class="responsive-img circle" src="iconproject.png"></a></div>
+                <div class="col s3"><a  href="{{pathFor 'quiz'}}"><img class="responsive-img circle" src="iconquiz.png"></a></div>
+                <div class="col s3"><a  href="{{pathFor 'assignment'}}"><img class="responsive-img circle" src="iconassignment.png"></a></div>
+                <div class="col s3"><a  href="{{pathFor 'exam'}}"><img class="responsive-img circle" src="iconexam.png"></a>
+                </div>
+            </div>
+
+
+</div>
+  <div class="fixed-action-btn horizontal click-to-toggle" style="bottom: 45px; right: 24px;">
+    <a class="btn-floating btn-large red">
+      <i class="large mdi-navigation-menu"></i>
+    </a>
+    <ul>
+     
+      <li><a class="btn-floating yellow darken-1" href="{{pathFor 'deadline'}}"><i class="material-icons" style="font-size:10px">DEADLINES</i></a></li>
+      <li><a class="btn-floating perm_camera_mic" href="{{pathFor 'quiz'}}"><i class="material-icons" style="font-size:10px">USER</i></a></li>
+      <li><a class="btn-floating blue" href="{{pathFor 'exam'}}"><i class="material-icons" style="font-size:10px">SUMMARY </i></a></li>
+        <li><a class="btn-floating blue" href="{{pathFor 'history'}}"><i class="material-icons" style="font-size:10px">HISTORY</i></a></li>
+    </ul>
+ </div>
+ 
+
+
+</template>

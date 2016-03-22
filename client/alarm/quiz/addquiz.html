@@ -1,0 +1,99 @@
+<template name="addquiz">
+
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="css/materialize.clockpicker.css" media="screen,projection"/>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.min.js"></script>
+  <script src="js/materialize.clockpicker.js"></script>
+
+ <div class="row">
+    <form class="col s12">
+        <div class="input-field col s6">
+          <input id="input_starttime" class="timepicker" type="text" placeholder= "Time">
+         
+        </div>
+        <div class="input-field col s6">
+           <input type="date" class="datepicker" placeholder="Date" id="datequiz">
+        
+        </div>
+      <div class="input-field col s4">
+          <input id="subjectquiz" class="timepicker" type="text" placeholder= "Subject Code">
+        </div>
+        <div class="input-field col s8">
+          <input id="descriptivequiz" class="timepicker" type="text" placeholder= "Discription Title">
+        </div>
+      </form>
+      </div>
+
+
+      
+
+
+      <div class="row">
+     
+      <div class="col s8 pull-s7">
+        
+        <div class="form-control-wrapper fileinput">
+   <!--      <input type="text" readonly="" class="form-control empty">
+  -->       <input name="{{name}}" type="file" multiple="{{multiple}}" accept='.mp3,.wav' disabled="{{disabled}}">
+  
+        <!-- <div class="floating-label">{{#if placeholder}} {{placeholder}} {{else}} Browse... {{/if}}</div>
+         --><span class="material-input"></span>
+    </div>
+
+
+
+      </div>
+
+
+
+
+
+    </div>
+          
+      
+     <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="messagequiz" class="materialize-textarea"></textarea>
+          <label for="textarea1">Messages</label>
+        </div>
+      </div>
+    </form>
+  </div>
+<button class="btn waves-effect waves-light" data-action="load" type="submit" name="action">Submit
+  </button>
+  
+
+
+
+
+
+
+
+        
+  <script type="text/javascript">
+    $('#input_starttime').pickatime({
+      twelvehour: true
+    });
+  </script>
+
+
+
+
+{{#each alarmquiz}}
+
+        <div> {{time}}</div>
+
+
+
+      {{/each}}
+
+
+
+</template>

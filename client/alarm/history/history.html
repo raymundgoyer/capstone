@@ -1,0 +1,76 @@
+<template name="history">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <div class="container">
+  <ul class="collapsible" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header"><h5>ASSIGNMENTS HISTORY</h5></div>
+      <div class="collapsible-body">
+      	{{#each historyass}}
+			<div class="card">
+                <i class="small mdi-action-delete right red-text" id="deletehistoryass"></i>
+  
+                <div class="collection">
+		       		 <a href="#!" class="collection-item">{{assigndate}} {{assigntime}}<br>
+		       		 {{assignsub}} {{assigntitle}}<br><br>
+		       		 {{assignmessages}}</a>
+	     		</div>
+            </div>
+      {{/each}}
+	   </div>
+    </li>
+    <li>
+      <div class="collapsible-header"><h5>PROJECTS HISTORY</h5></div>
+      <div class="collapsible-body">
+      {{#each historypro}}
+      <div class="card">
+       <i class="small mdi-action-delete right red-text" id="deletehistorypro"></i>
+  
+                <div class="collection">
+		       		 <a href="#!" class="collection-item">{{dateproject}} {{timeproject}}<br>
+		       		 {{subproject}} {{desproject}}<br><br>
+		       		 {{messagesproject}}</a>
+	     		</div>
+        </div>
+       {{/each}}
+       </div>
+    </li>
+    <li>
+      <div class="collapsible-header"><h5>EXAMS HISTORY</h5></div>
+      <div class="collapsible-body">
+      {{#each historyexam}}
+      	<div class="card">
+         <i class="small mdi-action-delete right red-text" id="deletehistoryexam"></i>
+  
+                <div class="collection">
+		       		 <a href="#!" class="collection-item">{{datexam}} {{timexam}}<br>
+		       		 {{subexam}} {{desexam}}<br><br>
+		       		 {{messageexam}}</a>
+	     		</div>
+        </div>	
+       {{/each}}
+       </div>
+    </li>
+    <li>
+      <div class="collapsible-header"><h5>QUIZES HISTORY</h5></div>
+      <div class="collapsible-body">
+      {{#each historyquiz}}
+      <div class="card">
+                <div class="collection">
+                 <i class="small mdi-action-delete right red-text" id="deletehistoryquiz"></i>
+  
+		       		 <a href="#!" class="collection-item">{{indatequiz}} {{timequiz}}<br>
+		       		 {{subquiz}} {{desquiz}}<br><br>
+		       		 {{messagesquiz}}</a>
+	     		</div>
+        </div>	 		
+ 	   {{/each}}
+ 	    </div>
+    </li>
+  </ul>
+        
+        
+</div>
+
+</template>

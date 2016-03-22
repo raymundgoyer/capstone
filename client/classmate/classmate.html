@@ -1,0 +1,168 @@
+
+<template name="classmate">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+     <div class="fixed-action-btn horizontal" style="bottom: 45px; right: 24px;">
+		    <a class="btn-floating btn-large" id="class"> 
+		    <i class="mdi-content-add"></i>
+		    </a>  
+		</div>     
+  				<div class="container">
+		  <ul class="collapsible collapsible-accordion" data-collapsible="accordion">
+			  {{#each profile}}
+			    <li>
+			      <div class="collapsible-header"><h5>{{fname}} {{lname}}</h5><a id="deleteclass" style="color: #d5000;">Remove Classmate</a></div>
+			      <div class="collapsible-body">
+			      	<div class="m12 col">
+			            <div class="card blue darken-2">
+			                <div class="card-content row">
+			      				<div class="s3 l3 col"> 
+			      				<img data-id={{_id}} class="circle" src="{{classpic}}" width="100" height="130"/>
+			           			</div>
+					            <div class="s9 l9 col">
+					                <p style="font-size: 20px; font-weight: bold; color: white;">{{fname}} {{lname}}</p>
+					                <label class="labels">Contact No. :</label> {{contact}} <br>
+					                <label class="labels">Birthdate : </label> {{mon}} {{da}}, {{yea}}<br>
+					                <label class="labels">Address : </label> {{add}} <br>
+					                
+					            </div>
+					   		</div>    
+					    </div>
+					</div>
+			      </div>
+			    </li>
+			     {{/each}}
+
+			     {{> addclassmateModal}}
+		  </ul>
+		</div>
+	
+</template>
+<template name="addclassmateModal">
+ <div class="modal" id="addclassmateModal">
+  
+     <div class="container">
+    <div class="row">
+        <div class="col m10 offset-m1 s12">
+    
+
+
+         <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col m6 s6">
+                            <input id="first_name" type="text" class="validate">
+                            <label for="first_name">First Name</label>
+                        </div>
+                        <div class="input-field col m6 s6">
+                            <input id="last_name" type="text" class="validate">
+                            <label for="last_name">Last Name</label>
+                        </div>
+                    </div>
+                   
+                        <div class="input-field col m6 s12">
+                            
+                            <input id="contact" type="text" class="validate" required>
+                            <label for="contact">Contact Number</label>
+                        </div>
+                         <div class="input-field col s5">
+                            <select class="browser-default" id="month">
+                              <option value="" selected disabled>Month</option>
+                              <option value="January">January</option>
+                              <option value="February">February</option>
+                              <option value="March">March</option>
+                              <option value="April">April</option>
+                              <option value="May">May</option>
+                              <option value="June">June</option>
+                              <option value="July">July</option>
+                              <option value="August">August</option>
+                              <option value="September">September</option>
+                           	  <option value="October">October</option>
+                              <option value="November">November</option>
+                              <option value="December">December</option>
+                            
+                            </select>
+                        </div>
+                   
+                   
+
+                        <div class="input-field col s3">
+                            <select class="browser-default" id="day">
+                              <option value="" selected disabled>Day</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                              <option value="6">6</option>
+                              <option value="7">7</option>
+                              <option value="8">8</option>
+                              <option value="9">9</option>
+                              <option value="10">10</option>
+                              <option value="11">11</option>
+                              <option value="12">12</option>
+                              <option value="13">13</option>
+                              <option value="14">14</option>
+                              <option value="15">15</option>
+                              <option value="16">16</option>
+                              <option value="17">17</option>
+                              <option value="18">18</option>
+                              <option value="19">19</option>
+                              <option value="20">20</option>
+                              <option value="21">21</option>
+                              <option value="22">22</option>
+                              <option value="23">23</option>
+                              <option value="24">24</option>
+                              <option value="27">26</option>
+                              <option value="28">28</option>
+                              <option value="29">29</option>
+                              <option value="30">30</option>
+                            </select>
+                        </div>   
+
+                        <div class="input-field col s4">
+                            <select class="browser-default" id="year">
+                              <option value="" selected disabled>Year</option>
+                              <option value="1982">1982</option>
+                              <option value="1983">1983</option>
+                              <option value="1984">1984</option>
+                              <option value="1985">1985</option>
+                              <option value="1986">1986</option>
+                              <option value="1987">1987</option>
+                              <option value="1988">1988</option>
+                              <option value="1989">1989</option>
+                              <option value="1920">1990</option>
+                              <option value="1920">1991</option>
+                              <option value="1920">1992</option>
+                              <option value="1920">1993</option>
+                              <option value="1920">1994</option>
+                              <option value="1920">1995</option>
+                              <option value="1920">1996</option>
+                              <option value="1920">1997</option>
+                              <option value="1920">1998</option>
+                              <option value="1920">1999</option>
+                              <option value="1920">2000</option>
+                            </select>
+                        </div>   
+                         <div class="input-field col m6 s12">
+                            
+                            <input id="address" type="text" class="validate">
+                            <label for="address">Address</label>
+                        </div>
+              
+                    <div class="divider"></div>
+                    <div class="row">
+                        <div class="col m12">
+                         <p class="right-align"><button class="btn btn-large waves-effect waves-light" type="button" id ="classbtn">Save</button></p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    
+      </div>
+    </div>
+    </div>
+  </template>
+
+

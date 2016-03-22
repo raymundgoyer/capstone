@@ -1,0 +1,37 @@
+<template name="exam">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+{{#each alarmexam}}
+
+        
+
+        <ul class="collection">
+		    <li class="collection-item avatar">
+		      <img src="images/yuna.jpg" alt="" class="circle">
+		      <span class="title" style="font-size: 30px;">{{timexam}}</span>
+		      <p>{{datexam}} <br>
+		         {{subexam}} <br>
+		          <i class="small mdi-action-delete right red-text" id="deletexam"></i>
+		         {{desexam}} <br>
+		         {{messageexam}}
+
+		      </p>
+
+		    </li>
+  		</ul>
+
+
+      {{/each}}
+
+
+  <div class="fixed-action-btn horizontal" style="bottom: 45px; right: 24px;">
+    <a class="btn-floating btn-large red" href="{{pathFor 'addexam'}}" >
+      <i class="mdi-content-add"></i>
+    </a>  
+
+
+
+    </div>
+</template>

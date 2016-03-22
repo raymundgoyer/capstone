@@ -1,0 +1,576 @@
+<template name="addproject">
+
+<head>
+    <script type="text/javascript">
+
+
+
+
+      var sound = new Audio('music.wav');
+      
+
+    sound.loop = true;
+    
+    // I just made this because It's easier to read.
+    getID = function(value){ return document.getElementById( value ); };
+    
+    // List of all my objects im working with, and variables
+    var hour = getID("hour"),
+      minute = getID("minute"),
+      second = getID("second"),
+      aHour = getID("aHour"),
+      aMinute = getID("aMinute"),
+      aSecond = getID("aSecond"),
+      aSwitch = getID("aSwitch"),
+      aOff = getID("turnOff"),
+      refreshTime = 500,
+      alarmTimer = null;
+    
+    aSwitch.On = false;
+    aSwitch.value = "Alarm OFF";
+    
+    // Turns the alarm off or on
+    function alarmSwitch(){
+      switch( aSwitch.On )
+      {
+        case false:
+          aSwitch.On = true;
+          aSwitch.value = "Alarm ON";
+          
+          alarmSet();
+        break;
+        case true:
+          aSwitch.On = false;
+          aSwitch.value = "Alarm OFF";
+          
+          // CLEARS THE BEEPER 
+          clearTimeout( alarmTimer );
+        break;
+      }
+    }
+    
+    // Stops the alarm and closes the "stop button"
+   
+    
+    //Fires the BEEPER noise, -- this is called from the alarmTimer timeout
+    function alarmFire(){
+
+  // $('#popupModal').openModal();
+
+
+      if( aSwitch.On )
+      {
+        aOff.style.display = "block";
+        sound.play();
+        var r = confirm("Dismiss Alarm");
+        var m = $('#subjetcodeproject');
+          if (r == true) {
+                  
+                m
+                  sound.pause();
+                  // $('#popupModal').closeModal();
+                  aOff.style.display = "none";
+                
+          } else {
+              x = "You pressed Cancel!";
+          }  
+      
+      }
+      else
+        alert("error..");
+    }
+
+
+
+    
+    /*This is how the beeper goes off:
+     * It first checks the set time so the alarm can go to the 
+     * next day without the user putting the date in.
+     * The beeper goes off over the span of milliseconds difference.
+     */
+    function alarmSet(){
+      clearTimeout( alarmTimer );
+      
+      var tomo = false;// tomorrow.
+      if( aHour.value < hour.value )
+        {tomo = true;}
+      else if( aHour.value == hour.value && aMinute.value < minute.value )
+        {tomo = true;}
+      else if( aHour.value == hour.value && aMinute.value == minute.value 
+          && aSecond.value < second.value )
+        {tomo = true;}
+      
+      var date = new Date(), year = date.getFullYear(), month = date.getMonth(), day = parseInt( date.getDate() );
+        
+      if( tomo ){day += 1;}
+      
+      time = new Date( year, month, day, aHour.value, aMinute.value, aSecond.value, date.getMilliseconds() );
+      time = ( time - (new Date()) );
+      
+      // This turns the alarm back on if it's off when this function is called.
+      if( aSwitch.On == false)
+        alarmSwitch();
+      
+      alarmTimer = setTimeout( function(){alarmFire();} ,parseInt(time) );
+    }
+    
+    // This is how the clock works
+    timeRefresh = function(){
+      date = new Date();
+      hour.innerHTML = date.getHours();
+      hour.value = hour.innerHTML;
+      minute.innerHTML = date.getMinutes();
+      minute.value = minute.innerHTML;
+      second.innerHTML = date.getSeconds();
+      second.value = second.innerHTML;
+      
+      setTimeout("timeRefresh()", refreshTime);
+    };
+    
+    // This is called whenever the inputs are changed to stop invalid forms.
+    numCap = function( obj, min, max){
+      obj.value = Math.max(obj.min, Math.min(obj.max, obj.value) );
+      
+      alarmSet();// Starts up the alarm automatically when a value is changed.
+    };
+    
+timeRefresh();
+
+var a = getID("aHour");
+a.value = hour.innerHTML;
+a = getID("aMinute");
+a.value = minute.innerHTML;
+a = getID("aSecond");
+a.value = second.innerHTML;
+
+
+
+
+    </script>
+
+
+  </head>
+
+
+<div class="modal" id="popupModal">
+    <div class="modal-content">
+      <h4>Subject</h4>
+      <div class="input-field col s12">
+        <input class="validate" id="camera" placeholder="Add Subject" type="text">
+          <label for="roomName">subject</label>
+        </div>
+      <button class="btn btn-large waves-effect waves-light" type="button" id="turnOff" onclick="cambtn();">Save</button>
+      </div>
+    </div>
+    <body>
+    <div id="Container">
+
+
+
+
+      <center>
+        <div id="clock" style="font-size: 40px; color: #039be5; font-weight: bold;">
+          <span id="hour"> </span> :
+          <span id="minute"> </span> :
+          <span id="second"> </span>
+        </div>
+      </center>
+      <div id="Alarm">
+        
+        <div class="row">
+                <form class="col s12">
+      <div id="Alarm">
+        <div class="input-field col s3">
+                            <select  class="browser-default"  id="aHour"  >
+                              <option value="">Hour</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                              <option value="6">6</option>
+                              <option value="7">7</option>
+                              <option value="8">8</option>
+                              <option value="9">9</option>
+                              <option value="10">10</option>
+                              <option value="11">11</option>
+                              <option value="12">12</option>
+                               <option value="13">13</option>
+                              <option value="14">14</option>
+                              <option value="15">15</option>
+                              <option value="16">16</option>
+                              <option value="17">17</option>
+                              <option value="18">18</option>
+                              <option value="19">19</option>
+                              <option value="20">20</option>
+                              <option value="21">21</option>
+                              <option value="22">22</option>
+                              <option value="23">23</option>
+                              <option value="24">24</option>
+                            
+                            </select>
+                        </div>
+                   
+                   
+
+                        <div class="input-field col s3">
+                            <select  class="browser-default" id="aMinute" >
+                              <option value="">Minute</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                              <option value="6">6</option>
+                              <option value="7">7</option>
+                              <option value="8">8</option>
+                              <option value="9">9</option>
+                              <option value="10">10</option>
+                              <option value="11">11</option>
+                              <option value="12">12</option>
+                              <option value="13">13</option>
+                              <option value="14">14</option>
+                              <option value="15">15</option>
+                              <option value="16">16</option>
+                              <option value="17">17</option>
+                              <option value="18">18</option>
+                              <option value="19">19</option>
+                              <option value="20">20</option>
+                              <option value="21">21</option>
+                              <option value="22">22</option>
+                              <option value="23">23</option>
+                              <option value="24">24</option>
+                              <option value="27">26</option>
+                              <option value="28">28</option>
+                              <option value="29">29</option>
+                              <option value="30">30</option>
+                              <option value="31">31</option>
+                              <option value="32">32</option>
+                              <option value="33">33</option>
+                              <option value="34">34</option>
+                              <option value="35">35</option>
+                              <option value="36">36</option>
+                              <option value="37">37</option>
+                              <option value="38">38</option>
+                              <option value="39">39</option>
+                              <option value="10">10</option>
+                              <option value="11">11</option>
+                              <option value="12">12</option>
+                              <option value="13">13</option>
+                              <option value="14">14</option>
+                              <option value="15">15</option>
+                              <option value="16">16</option>
+                              <option value="17">17</option>
+                              <option value="18">18</option>
+                              <option value="19">19</option>
+                              <option value="20">20</option>
+                              <option value="21">21</option>
+                              <option value="22">22</option>
+                              <option value="23">23</option>
+                              <option value="24">24</option>
+                              <option value="27">26</option>
+                              <option value="28">28</option>
+                              <option value="29">29</option>
+                              <option value="30">30</option>
+                              <option value="1">31</option>
+                              <option value="32">32</option>
+                              <option value="33">33</option>
+                              <option value="34">34</option>
+                              <option value="35">35</option>
+                              <option value="36">36</option>
+                              <option value="37">37</option>
+                              <option value="38">38</option>
+                              <option value="39">39</option>
+                              <option value="40">40</option>
+                              <option value="41">41</option>
+                              <option value="42">42</option>
+                              <option value="43">43</option>
+                              <option value="44">44</option>
+                              <option value="45">45</option>
+                              <option value="46">46</option>
+                              <option value="47">47</option>
+                              <option value="48">48</option>
+                              <option value="49">49</option>
+                              <option value="50">50</option>
+                              <option value="51">51</option>
+                              <option value="52">52</option>
+                              <option value="53">53</option>
+                              <option value="54">54</option>
+                              <option value="55">55</option>
+                              <option value="55">55</option>
+                              <option value="57">57</option>
+                              <option value="58">58</option>
+                              <option value="59">59</option>
+                              <option value="60">60</option>
+                             
+                            </select>
+                        </div>   
+
+                        <div class="input-field col s3">
+                            <select class="browser-default"  id="aSecond" >
+                              <option value="" >Second</option>
+                             <option value="">Minute</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                              <option value="6">6</option>
+                              <option value="7">7</option>
+                              <option value="8">8</option>
+                              <option value="9">9</option>
+                              <option value="10">10</option>
+                              <option value="11">11</option>
+                              <option value="12">12</option>
+                              <option value="13">13</option>
+                              <option value="14">14</option>
+                              <option value="15">15</option>
+                              <option value="16">16</option>
+                              <option value="17">17</option>
+                              <option value="18">18</option>
+                              <option value="19">19</option>
+                              <option value="20">20</option>
+                              <option value="21">21</option>
+                              <option value="22">22</option>
+                              <option value="23">23</option>
+                              <option value="24">24</option>
+                              <option value="27">26</option>
+                              <option value="28">28</option>
+                              <option value="29">29</option>
+                              <option value="30">30</option>
+                              <option value="31">31</option>
+                              <option value="32">32</option>
+                              <option value="33">33</option>
+                              <option value="34">34</option>
+                              <option value="35">35</option>
+                              <option value="36">36</option>
+                              <option value="37">37</option>
+                              <option value="38">38</option>
+                              <option value="39">39</option>
+                              <option value="10">10</option>
+                              <option value="11">11</option>
+                              <option value="12">12</option>
+                              <option value="13">13</option>
+                              <option value="14">14</option>
+                              <option value="15">15</option>
+                              <option value="16">16</option>
+                              <option value="17">17</option>
+                              <option value="18">18</option>
+                              <option value="19">19</option>
+                              <option value="20">20</option>
+                              <option value="21">21</option>
+                              <option value="22">22</option>
+                              <option value="23">23</option>
+                              <option value="24">24</option>
+                              <option value="27">26</option>
+                              <option value="28">28</option>
+                              <option value="29">29</option>
+                              <option value="30">30</option>
+                              <option value="1">31</option>
+                              <option value="32">32</option>
+                              <option value="33">33</option>
+                              <option value="34">34</option>
+                              <option value="35">35</option>
+                              <option value="36">36</option>
+                              <option value="37">37</option>
+                              <option value="38">38</option>
+                              <option value="39">39</option>
+                              <option value="40">40</option>
+                              <option value="41">41</option>
+                              <option value="42">42</option>
+                              <option value="43">43</option>
+                              <option value="44">44</option>
+                              <option value="45">45</option>
+                              <option value="46">46</option>
+                              <option value="47">47</option>
+                              <option value="48">48</option>
+                              <option value="49">49</option>
+                              <option value="50">50</option>
+                              <option value="51">51</option>
+                              <option value="52">52</option>
+                              <option value="53">53</option>
+                              <option value="54">54</option>
+                              <option value="55">55</option>
+                              <option value="55">55</option>
+                              <option value="57">57</option>
+                              <option value="58">58</option>
+                              <option value="59">59</option>
+                              <option value="60">60</option>
+                             
+                            </select>
+                        </div> 
+                          <div class="input-field col s3">
+                            <select  id="AP" >
+                              <option value="" >AM/PM</option>
+                              <option value="AM">AM</option>
+                              <option value="PM">PM</option>
+                              
+
+                            </select>
+                        </div> 
+<div class="input-fieled col s12">
+<form action="#">
+    <div class="file-field input-field">
+      <div class="btn">
+        <span>music</span>
+        <input type="file" id= "music">
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+      </div>
+    </div>
+  </form>
+  </div>
+
+
+
+
+<div class="input-field col s4">
+          <input id="subjetcodeproject" class="timepicker" type="text" placeholder= "Subject Code">
+        </div>
+        <div class="input-field col s8">
+          <input id="descriptiveproject" class="timepicker" type="text" placeholder= "Descriptive Title">
+        </div>
+
+                          <div class="input-field col m6 s12">
+                            
+                            <input id="messagesproject" type="text" class="validate">
+                            <label for="address">Messages</label>
+                        </div>
+
+
+<div class="input-field col s4">
+<button class="btn waves-effect waves-light" data-action="load" type="submit" name="action">Save</button>
+</div>
+   <div class="input-field col s8">
+   <input class="btn waves-effect waves-light" id="aSwitch" type="button" value="Alarm OFF" onclick="alarmSwitch()"/>
+        </div>
+      </div>
+      </form>
+      </div>
+        
+       
+      </div>
+      
+      <br>
+      
+    </div>
+     </body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="css/materialize.clockpicker.css" media="screen,projection"/>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.min.js"></script>
+  <script src="js/materialize.clockpicker.js"></script>
+
+  <div class="row">
+    <form class="col s12">
+        <div class="input-field col s6">
+          <input id="input_starttime" class="timepicker" type="text" placeholder= "Time">
+         
+        </div>
+        <div class="input-field col s6">
+             <input type="date" class="datepicker" placeholder="Date" id="startdateproject">
+        </div>
+      <div class="input-field col s4">
+          <input id="subjetcodeproject" class="timepicker" type="text" placeholder= "Subject Code">
+        </div>
+        <div class="input-field col s8">
+          <input id="descriptiveproject" class="timepicker" type="text" placeholder= "Descriptive Title">
+        </div>
+      </form>
+      </div>
+
+
+      
+
+
+          
+      
+     <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="messagesproject" class="materialize-textarea"></textarea>
+          <label for="textarea1">Messages</label>
+        </div>
+      </div>
+    </form>
+  </div>
+<button class="btn waves-effect waves-light" data-action="load" type="submit" name="action">Submit
+  </button>
+  
+
+
+
+
+
+
+
+        
+  <script type="text/javascript">
+    $('#input_starttime').pickatime({
+      twelvehour: true
+    });
+  </script>
+ -->
+
+
+
+
+</template>
+
